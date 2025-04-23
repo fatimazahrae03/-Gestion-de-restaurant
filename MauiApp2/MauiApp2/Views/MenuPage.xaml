@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:MauiApp2.ViewModels"
+             x:Class="MauiApp2.Views.MenuPage"
+             Title="Gestion du Menu">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Actualiser" Command="{Binding LoadCategoriesCommand}" IconImageSource="refresh.png" />
+    </ContentPage.ToolbarItems>
+    
+    <Grid RowDefinitions="Auto,*" ColumnDefinitions="*,*" Padding="10">
+        <!-- Header pour les catégories -->
+        <VerticalStackLayout Grid.Row="0" Grid.Column="0" Margin="0,0,5,10">
+            <Label Text="Catégories" FontSize="Large" FontAttributes="Bold" />
+            <Button Text="Ajouter une catégorie" Command="{Binding AddCategoryCommand}" HorizontalOptions="End" />
+        </VerticalStackLayout>
+        
+        <!-- Header pour les plats -->
+        <VerticalStackLayout Grid.Row="0" Grid.Column="1" Margin="5,0,0,10">
+            <Label Text="Plats" FontSize="Large" FontAttributes="Bold" />
+            <Button Text="Ajouter un plat" Command="{Binding AddMenuItemCommand}" HorizontalOptions="End" 
+                    IsEnabled="{Binding SelectedCategory, Converter={StaticResource IsNotNullConverter}}" />
+        </VerticalStackLayout>
+        
+        <!-- Liste des catégories -->
+        <Grid Grid.Row="1" Grid.Column="0" Margin="0,0,5,0">
+            <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" 
+                               HorizontalOptions="Center" VerticalOptions="Center" />
+                               
+            <CollectionView ItemsSource="{Binding Categories}"
+                            SelectedItem="{Binding SelectedCategory}"
+                            SelectionMode="Single">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        
+                            <!-- Remplacer le SwipeView dans la section catégories par: -->
+                            <Frame Margin="2" BorderColor="LightGray" Padding="10">
+                                <Grid ColumnDefinitions="*, Auto, Auto">
+                                    <StackLayout Grid.Column="0">
+                                        <Label Text="{Binding Name}" FontAttributes="Bold" />
+                                        <Label Text="{Binding Description}" FontSize="Small" LineBreakMode="TailTruncation" />
+                                    </StackLayout>
+        
+                                    <Button Grid.Column="1" 
+                                            Text="✏️" 
+                                            WidthRequest="40" 
+                                            Margin="2,0"
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MenuViewModel}}, Path=EditCategoryCommand}"
+                                            CommandParameter="{Binding .}" />
+        
+                                    <Button Grid.Column="2" 
+                                            Text="🗑️" 
+                                            WidthRequest="40"
+                                            BackgroundColor="Red" 
+                                            TextColor="White"
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MenuViewModel}}, Path=DeleteCategoryCommand}"
+                                            CommandParameter="{Binding .}" />
+                                </Grid>
+                            </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+                <CollectionView.EmptyView>
+                    <ContentView>
+                        <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                            <Label Text="Aucune catégorie disponible" HorizontalOptions="Center" />
+                            <Label Text="Utilisez le bouton 'Ajouter une catégorie'" HorizontalOptions="Center" />
+                        </StackLayout>
+                    </ContentView>
+                </CollectionView.EmptyView>
+            </CollectionView>
+        </Grid>
+        
+        <!-- Liste des plats -->
+        <Grid Grid.Row="1" Grid.Column="1" Margin="5,0,0,0">
+            <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" 
+                               HorizontalOptions="Center" VerticalOptions="Center" />
+                               
+            <CollectionView ItemsSource="{Binding MenuItems}"
+                            SelectedItem="{Binding SelectedMenuItem}"
+                            SelectionMode="Single">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                       <!-- Remplacer le SwipeView dans la section plats par: -->
+<Frame Margin="2" BorderColor="LightGray" Padding="10">
+    <Grid ColumnDefinitions="Auto,*,Auto,Auto">
+        <!-- Image du plat (si disponible) -->
+        <Image Grid.Column="0" 
+               Source="{Binding ImagePath}" 
+               WidthRequest="50" 
+               HeightRequest="50"
+               Aspect="AspectFill"
+               Margin="0,0,10,0"
+               IsVisible="{Binding ImagePath, Converter={StaticResource StringNotEmptyConverter}}" />
+        
+        <!-- Informations sur le plat -->
+        <VerticalStackLayout Grid.Column="1">
+            <Label Text="{Binding Name}" FontAttributes="Bold" />
+            <Label Text="{Binding Description}" FontSize="Small" LineBreakMode="TailTruncation" />
+            <StackLayout Orientation="Horizontal">
+                <Label Text="{Binding Price, StringFormat='{0:C}'}" FontAttributes="Bold" />
+                <Label Text="{Binding IsAvailable, Converter={StaticResource BoolToAvailabilityConverter}}" 
+                       TextColor="{Binding IsAvailable, Converter={StaticResource BoolToColorConverter}}"
+                       FontSize="Small"
+                       Margin="10,0,0,0" />
+            </StackLayout>
+        </VerticalStackLayout>
+        
+        <!-- Boutons d'action -->
+        <Button Grid.Column="2" 
+                Text="✏️" 
+                WidthRequest="40" 
+                Margin="2,0"
+                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MenuViewModel}}, Path=EditMenuItemCommand}"
+                CommandParameter="{Binding .}" />
+        
+        <Button Grid.Column="3" 
+                Text="🗑️" 
+                WidthRequest="40"
+                BackgroundColor="Red" 
+                TextColor="White"
+                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MenuViewModel}}, Path=DeleteMenuItemCommand}"
+                CommandParameter="{Binding .}" />
+    </Grid>
+</Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+                <CollectionView.EmptyView>
+                    <ContentView>
+                        <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                            <Label Text="Aucun plat dans cette catégorie" HorizontalOptions="Center" />
+                            <Label Text="Sélectionnez une catégorie ou ajoutez un nouveau plat" HorizontalOptions="Center" />
+                        </StackLayout>
+                    </ContentView>
+                </CollectionView.EmptyView>
+            </CollectionView>
+        </Grid>
+    </Grid>
+</ContentPage>

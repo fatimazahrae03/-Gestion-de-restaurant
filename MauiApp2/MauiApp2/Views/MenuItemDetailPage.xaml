@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp2.Views.MenuItemDetailPage"
+             Title="{Binding Title}">
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid RowDefinitions="*,Auto" Padding="20">
+                <VerticalStackLayout Grid.Row="0" Spacing="15">
+                    <Label Text="Nom du plat" FontAttributes="Bold" />
+                    <Entry Text="{Binding MenuItem.Name}" Placeholder="Entrez le nom du plat" />
+                    
+                    <Label Text="Description" FontAttributes="Bold" />
+                    <Editor Text="{Binding MenuItem.Description}" 
+                            Placeholder="Entrez une description" 
+                            HeightRequest="100" />
+                    
+                    <Label Text="Prix" FontAttributes="Bold" />
+                    <Entry Text="{Binding MenuItem.Price}" 
+                           Placeholder="Entrez le prix" 
+                           Keyboard="Numeric" />
+                    
+                    <Label Text="Catégorie" FontAttributes="Bold" />
+                    <Picker ItemsSource="{Binding Categories}"
+                            ItemDisplayBinding="{Binding Name}"
+                            SelectedItem="{Binding SelectedCategory}" />
+                    
+                    <StackLayout Orientation="Horizontal">
+                        <CheckBox IsChecked="{Binding MenuItem.IsAvailable}" />
+                        <Label Text="Disponible" 
+                               VerticalOptions="Center" />
+                    </StackLayout>
+                    
+                    <Label Text="Image (chemin)" FontAttributes="Bold" />
+                    <Grid ColumnDefinitions="*,Auto">
+                        <Entry Grid.Column="0" 
+                               Text="{Binding MenuItem.ImagePath}" 
+                               Placeholder="Chemin de l'image" />
+                        <Button Grid.Column="1" 
+                                Text="Parcourir" 
+                                Command="{Binding BrowseImageCommand}" />
+                    </Grid>
+                    
+                    <Image Source="{Binding MenuItem.ImagePath}" 
+                           HeightRequest="100" 
+                           WidthRequest="100"
+                           Aspect="AspectFit"
+                           HorizontalOptions="Center"
+                           IsVisible="{Binding MenuItem.ImagePath, Converter={StaticResource StringNotEmptyConverter}}" />
+                </VerticalStackLayout>
+                
+                <HorizontalStackLayout Grid.Row="1" Spacing="10" HorizontalOptions="End" Margin="0,20,0,0">
+                    <Button Text="Annuler" Command="{Binding CancelCommand}" />
+                    <Button Text="Enregistrer" Command="{Binding SaveCommand}" BackgroundColor="Green" TextColor="White" />
+                </HorizontalStackLayout>
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

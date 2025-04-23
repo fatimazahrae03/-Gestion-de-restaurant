@@ -1,0 +1,103 @@
+is_global = true
+build_property.EnableAotAnalyzer = 
+build_property.EnableSingleFileAnalyzer = true
+build_property.EnableTrimAnalyzer = false
+build_property.IncludeAllContentForSelfExtract = 
+build_property.TargetFramework = net9.0-android
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = false
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = MauiApp2
+build_property.ProjectDir = C:\Users\DELL PRECISION\RiderProjects\MauiApp2\MauiApp2\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.EffectiveAnalysisLevelStyle = 9.0
+build_property.EnableCodeStyleSeverity = 
+
+[C:/Users/DELL PRECISION/RiderProjects/MauiApp2/MauiApp2/App.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MauiApp2.App.xaml
+build_metadata.AdditionalFiles.TargetPath = App.xaml
+build_metadata.AdditionalFiles.RelativePath = App.xaml
+
+[C:/Users/DELL PRECISION/RiderProjects/MauiApp2/MauiApp2/AppShell.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MauiApp2.AppShell.xaml
+build_metadata.AdditionalFiles.TargetPath = AppShell.xaml
+build_metadata.AdditionalFiles.RelativePath = AppShell.xaml
+
+[C:/Users/DELL PRECISION/RiderProjects/MauiApp2/MauiApp2/MainPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MauiApp2.MainPage.xaml
+build_metadata.AdditionalFiles.TargetPath = MainPage.xaml
+build_metadata.AdditionalFiles.RelativePath = MainPage.xaml
+
+[C:/Users/DELL PRECISION/RiderProjects/MauiApp2/MauiApp2/Resources/Styles/Colors.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MauiApp2.Resources.Styles.Colors.xaml
+build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Colors.xaml
+build_metadata.AdditionalFiles.RelativePath = Resources\Styles\Colors.xaml
+
+[C:/Users/DELL PRECISION/RiderProjects/MauiApp2/MauiApp2/Resources/Styles/Styles.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MauiApp2.Resources.Styles.Styles.xaml
+build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Styles.xaml
+build_metadata.AdditionalFiles.RelativePath = Resources\Styles\Styles.xaml
+
+[C:/Users/DELL PRECISION/RiderProjects/MauiApp2/MauiApp2/Views/CartPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MauiApp2.Views.CartPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\CartPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\CartPage.xaml
+
+[C:/Users/DELL PRECISION/RiderProjects/MauiApp2/MauiApp2/Views/CategoryDetailPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MauiApp2.Views.CategoryDetailPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\CategoryDetailPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\CategoryDetailPage.xaml
+
+[C:/Users/DELL PRECISION/RiderProjects/MauiApp2/MauiApp2/Views/HomePage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MauiApp2.Views.HomePage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\HomePage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\HomePage.xaml
+
+[C:/Users/DELL PRECISION/RiderProjects/MauiApp2/MauiApp2/Views/LoginPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MauiApp2.Views.LoginPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\LoginPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\LoginPage.xaml
+
+[C:/Users/DELL PRECISION/RiderProjects/MauiApp2/MauiApp2/Views/Menu.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MauiApp2.Views.Menu.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\Menu.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\Menu.xaml
+
+[C:/Users/DELL PRECISION/RiderProjects/MauiApp2/MauiApp2/Views/MenuItemDetailPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MauiApp2.Views.MenuItemDetailPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\MenuItemDetailPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\MenuItemDetailPage.xaml
+
+[C:/Users/DELL PRECISION/RiderProjects/MauiApp2/MauiApp2/Views/MenuPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MauiApp2.Views.MenuPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\MenuPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\MenuPage.xaml
+
+[C:/Users/DELL PRECISION/RiderProjects/MauiApp2/MauiApp2/Views/PaymentPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MauiApp2.Views.PaymentPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\PaymentPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\PaymentPage.xaml
+
+[C:/Users/DELL PRECISION/RiderProjects/MauiApp2/MauiApp2/Views/RegisterPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MauiApp2.Views.RegisterPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\RegisterPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\RegisterPage.xaml

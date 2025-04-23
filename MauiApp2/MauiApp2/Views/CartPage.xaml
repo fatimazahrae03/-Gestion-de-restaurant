@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:MauiApp2.ViewModels"
+             x:Class="MauiApp2.Views.CartPage"
+             Title="Votre Panier">
+
+    <Grid RowDefinitions="Auto,*,Auto" Padding="20">
+        <!-- En-tête -->
+        <VerticalStackLayout Grid.Row="0" Spacing="10">
+            <Label Text="Votre commande" 
+                   FontSize="20" 
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center" />
+                   
+            <Label Text="{Binding TableNumber, StringFormat='Table N°{0}'}" 
+                   FontSize="16"
+                   HorizontalOptions="Center"
+                   Margin="0,0,0,10" />
+        </VerticalStackLayout>
+
+        <!-- Liste des articles du panier -->
+        <CollectionView Grid.Row="1" 
+                        ItemsSource="{Binding CartItems}"
+                        SelectionMode="None"
+                        EmptyView="Votre panier est vide">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="10" ColumnDefinitions="*, Auto, Auto, Auto">
+                        <VerticalStackLayout Grid.Column="0">
+                            <Label Text="{Binding ItemName}" 
+                                   FontAttributes="Bold" />
+                            <Label Text="{Binding Price, StringFormat='{0:C}'}" />
+                            <Label Text="{Binding SpecialRequests}"
+                                   IsVisible="{Binding SpecialRequests, Converter={StaticResource StringNotEmptyConverter}}"
+                                   FontSize="Small"
+                                   TextColor="Gray" />
+                        </VerticalStackLayout>
+                        
+                        <Label Grid.Column="1" 
+                               Text="{Binding Quantity, StringFormat='x{0}'}" 
+                               VerticalOptions="Center" 
+                               Margin="10,0" />
+                               
+                        <Label Grid.Column="2" 
+                               Text="{Binding Total, StringFormat='{0:C}'}" 
+                               VerticalOptions="Center" 
+                               FontAttributes="Bold"
+                               Margin="10,0" />
+                               
+                        <Button Grid.Column="3" 
+                                Text="🗑️"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:CartPageViewModel}}, Path=RemoveItemCommand}" 
+                                CommandParameter="{Binding .}"
+                                BackgroundColor="Transparent"
+                                TextColor="Red" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <!-- Pied de page et résumé de la commande -->
+        <VerticalStackLayout Grid.Row="2" Spacing="15">
+            <BoxView HeightRequest="1" 
+                     BackgroundColor="LightGray" 
+                     HorizontalOptions="Fill" />
+                     
+            <Label Text="{Binding TotalAmount, StringFormat='Total: {0:C}'}" 
+                   FontSize="18"
+                   FontAttributes="Bold"
+                   HorizontalOptions="End" />
+                   
+            
+                    
+            <Button Text="Passer la commande" 
+                    Command="{Binding PlaceOrderCommand}"
+                    BackgroundColor="#007BFF"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    Margin="0,10,0,0"
+                    HorizontalOptions="Fill" />
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>

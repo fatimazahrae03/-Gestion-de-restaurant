@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp2.Views.PaymentPage"
+             Title="Paiement">
+    
+    <Grid RowDefinitions="Auto,*,Auto" Padding="20">
+        <!-- En-tête -->
+        <VerticalStackLayout Grid.Row="0" Spacing="10">
+            <Label Text="Finaliser votre commande"
+                   FontSize="22" 
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center" />
+                   
+            <Label Text="{Binding TotalAmount, StringFormat='Montant à payer: {0:C}'}" 
+                   FontSize="18"
+                   HorizontalOptions="Center"
+                   Margin="0,10,0,20" />
+        </VerticalStackLayout>
+        
+        <!-- Formulaire de paiement -->
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Spacing="20">
+                <!-- Titre du formulaire de paiement -->
+                <Label Text="Paiement par carte bancaire" FontAttributes="Bold" FontSize="18"/>
+                
+                <!-- Informations de carte -->
+                <VerticalStackLayout Spacing="15">
+                    <Label Text="Informations de carte bancaire" FontAttributes="Bold"/>
+                    
+                    <Border StrokeThickness="1" StrokeShape="RoundRectangle 10,10,10,10" Padding="10,0">
+                        <Entry Placeholder="Numéro de carte" Text="4111 1111 1111 1111" IsEnabled="True"/>
+                    </Border>
+                    
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+                        <Border Grid.Column="0" StrokeThickness="1" StrokeShape="RoundRectangle 10,10,10,10" Padding="10,0">
+                            <Entry Placeholder="MM/AA" Text="12/25" IsEnabled="True"/>
+                        </Border>
+                        
+                        <Border Grid.Column="1" StrokeThickness="1" StrokeShape="RoundRectangle 10,10,10,10" Padding="10,0">
+                            <Entry Placeholder="CVC" Text="123" IsEnabled="True"/>
+                        </Border>
+                    </Grid>
+                    
+                    <Border StrokeThickness="1" StrokeShape="RoundRectangle 10,10,10,10" Padding="10,0">
+                        <Entry Placeholder="Nom sur la carte" Text="CLIENT TEST" IsEnabled="True"/>
+                    </Border>
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+        </ScrollView>
+        
+        <!-- Boutons d'action -->
+        <VerticalStackLayout Grid.Row="2" Spacing="10">
+            <Button Text="Confirmer le paiement"
+                    Command="{Binding ProcessPaymentCommand}"
+                    BackgroundColor="#28a745"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    HorizontalOptions="Fill" />
+                    
+            <Button Text="Annuler"
+                    Command="{Binding CancelPaymentCommand}"
+                    BackgroundColor="Transparent"
+                    TextColor="#dc3545"
+                    FontAttributes="Bold"
+                    HorizontalOptions="Fill" />
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>

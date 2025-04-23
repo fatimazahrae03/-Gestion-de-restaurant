@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:MauiApp2.ViewModels"
+             xmlns:converters="clr-namespace:MauiApp2.Converters"
+             x:Class="MauiApp2.Views.Menu"
+             Title="Menu">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Voir Panier" Command="{Binding ViewCartCommand}" IconImageSource="cart.png" />
+    </ContentPage.ToolbarItems>
+    
+    <Grid RowDefinitions="Auto,*" Padding="10">
+        <!-- Barre de recherche et filtres -->
+        <Grid Grid.Row="0" ColumnDefinitions="*,Auto" Margin="0,0,0,10">
+            <SearchBar Grid.Column="0" 
+                        Placeholder="Rechercher un plat..." 
+                        Text="{Binding SearchQuery}" 
+                        SearchCommand="{Binding SearchCommand}" />
+                        
+            <Picker Grid.Column="1" 
+                    Title="Catégorie" 
+                    ItemsSource="{Binding Categories}" 
+                    ItemDisplayBinding="{Binding Name}"
+                    SelectedItem="{Binding SelectedCategory}" 
+                    WidthRequest="150"
+                    Margin="5,0,0,0" />
+        </Grid>
+        
+        <!-- Liste des plats -->
+        <CollectionView Grid.Row="1" 
+                        ItemsSource="{Binding FilteredMenuItems}"
+                        SelectionMode="None"
+                        EmptyView="Aucun plat trouvé">
+            <CollectionView.ItemTemplate>
+    <DataTemplate>
+        <Frame Margin="10" BorderColor="LightGray" Padding="15" HasShadow="True" CornerRadius="10">
+            <Grid ColumnDefinitions="Auto,*,Auto" RowDefinitions="Auto,Auto,Auto,Auto">
+                <!-- Image du produit -->
+                <Image Grid.Column="0" Grid.RowSpan="4"
+                       Source="{Binding ImagePath}"
+                       WidthRequest="100" 
+                       HeightRequest="100"
+                       Aspect="AspectFill"
+                       Margin="0,0,15,0"
+                       IsVisible="{Binding ImagePath, Converter={StaticResource StringNotEmptyConverter}}"
+                       SizeChanged="OnImageSizeChanged" /> <!-- Ajoutez un gestionnaire d'événement pour déboguer -->
+                
+                
+                
+                <!-- Informations sur le plat -->
+                <Label Grid.Column="1" Grid.Row="0"
+                       Text="{Binding Name}" 
+                       FontAttributes="Bold" 
+                       FontSize="Medium"/>
+                
+                <Label Grid.Column="1" Grid.Row="1"
+                       Text="{Binding Description}" 
+                       FontSize="Small" 
+                       LineBreakMode="TailTruncation"
+                       MaxLines="2"
+                       Margin="0,5,0,5"/>
+                
+                <Label Grid.Column="1" Grid.Row="2"
+                       Text="{Binding Price, StringFormat='{0:C}'}" 
+                       FontAttributes="Bold"
+                       TextColor="DarkGreen"/>
+                
+                <Label Grid.Column="1" Grid.Row="3"
+                       Text="Non disponible" 
+                       IsVisible="{Binding IsAvailable, Converter={StaticResource BoolInverterConverter}}"
+                       TextColor="Red" />
+                
+                <!-- Contrôle de quantité et bouton Ajouter au panier -->
+                <VerticalStackLayout Grid.Column="2" Grid.RowSpan="4" 
+                                     HorizontalOptions="End" 
+                                     VerticalOptions="Center"
+                                     IsVisible="{Binding IsAvailable}">
+                    <HorizontalStackLayout HorizontalOptions="Center" Margin="0,0,0,10">
+                        <Button Text="-" 
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ClientMenuViewModel}}, Path=DecreaseQuantityCommand}"
+                                CommandParameter="{Binding .}"
+                                WidthRequest="40" 
+                                HeightRequest="40"
+                                CornerRadius="20"
+                                BackgroundColor="LightGray"
+                                TextColor="Black" />
+                                
+                        <Entry Text="{Binding Quantity}" 
+                               Keyboard="Numeric"
+                               WidthRequest="50"
+                               HorizontalTextAlignment="Center" />
+                               
+                        <Button Text="+" 
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ClientMenuViewModel}}, Path=IncreaseQuantityCommand}"
+                                CommandParameter="{Binding .}"
+                                WidthRequest="40" 
+                                HeightRequest="40"
+                                CornerRadius="20"
+                                BackgroundColor="LightGray"
+                                TextColor="Black" />
+                    </HorizontalStackLayout>
+                    
+                    <Button Text="Ajouter au panier" 
+                            Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ClientMenuViewModel}}, Path=AddToCartCommand}"
+                            CommandParameter="{Binding .}"
+                            HorizontalOptions="Center"
+                            BackgroundColor="#007BFF"
+                            TextColor="White"
+                            CornerRadius="8"
+                            Padding="15,10"
+                            FontAttributes="Bold"/>
+                </VerticalStackLayout>
+            </Grid>
+        </Frame>
+    </DataTemplate>
+</CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>

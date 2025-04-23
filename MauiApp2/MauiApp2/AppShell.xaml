@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="MauiApp2.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:MauiApp2.Views"
+    Title="Restaurant Manager">
+
+    <!-- TabBar par défaut (sera modifiée dynamiquement selon le type d'utilisateur) -->
+    <TabBar x:Name="MainTabBar">
+        <!-- Onglet visible pour tous les utilisateurs -->
+        <ShellContent 
+            x:Name="HomeTab"
+            Title="Accueil"
+            ContentTemplate="{DataTemplate local:HomePage}"
+            Route="HomePage" />
+            
+        <!-- Onglet visible uniquement pour les clients -->
+        <ShellContent 
+            x:Name="MenuTab"
+            Title="Menu"
+            ContentTemplate="{DataTemplate local:Menu}"
+            Route="Menu" />
+            
+        <!-- Onglets visibles uniquement pour les administrateurs -->
+        <ShellContent 
+            x:Name="MenuManagementTab"
+            Title="Gestion de Menu"
+            ContentTemplate="{DataTemplate local:MenuPage}"
+            Route="MenuPage" 
+            IsVisible="False" />
+        <ShellContent 
+            x:Name="OrdersTab"
+            Title="Commandes"
+            Route="OrderPage" 
+            IsVisible="False" />
+        <ShellContent 
+            x:Name="ReservationsTab"
+            Title="Réservations"
+            Route="ReservationPage" 
+            IsVisible="False" />
+    </TabBar>
+</Shell>
